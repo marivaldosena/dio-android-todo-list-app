@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- Toolbar -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -15,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
     />
 
+    <!-- Guidelines -->
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide_start"
         android:layout_width="wrap_content"
@@ -31,15 +33,17 @@
         app:layout_constraintGuide_end="32dp"
     />
 
+    <!-- To-do Title -->
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/todo_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="@string/activity_title"
+        android:hint="@string/todo_title"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintStart_toStartOf="@id/guide_start"
-        app:layout_constraintEnd_toEndOf="@+id/guide_end"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="@id/guide_end"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
     >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -50,5 +54,49 @@
         
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- To-do Date -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/todo_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="8dp"
+        app:startIconDrawable="@drawable/ic_calendar"
+        android:hint="@string/todo_date"
+        app:layout_constraintStart_toStartOf="@id/guide_start"
+        app:layout_constraintEnd_toEndOf="@id/guide_end"
+        app:layout_constraintTop_toBottomOf="@id/todo_title"
+    >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:focusable="false"
+        />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- To-do Time -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/todo_time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:hint="@string/todo_time"
+        app:startIconDrawable="@drawable/ic_timer"
+        app:layout_constraintTop_toBottomOf="@id/todo_date"
+        app:layout_constraintStart_toStartOf="@id/guide_start"
+        app:layout_constraintEnd_toEndOf="@id/guide_end"
+    >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:inputType="none"
+        />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
