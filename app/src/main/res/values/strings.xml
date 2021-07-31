@@ -3,4 +3,6 @@
     <string name="todo_title">Título</string>
     <string name="todo_date">Data</string>
     <string name="todo_time">Hora</string>
+    <string name="button_add_todo">Criar tarefa</string>
+    <string name="button_cancel">Cancelar</string>
 </resources>

@@ -100,4 +100,31 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Cancel Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_cancel"
+        android:layout_width="0dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:text="@string/button_cancel"
+        android:textAllCaps="false"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/button_add_todo"
+        app:layout_constraintEnd_toEndOf="@id/guide_end"
+        app:layout_constraintStart_toStartOf="@id/guide_start"
+    />
+
+    <!-- Add To-do Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_add_todo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_marginBottom="16dp"
+        android:text="@string/button_add_todo"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guide_end"
+        app:layout_constraintStart_toStartOf="@id/guide_start"
+    />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
