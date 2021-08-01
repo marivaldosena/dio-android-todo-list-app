@@ -16,6 +16,7 @@ class AddTodoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityAddTodoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
