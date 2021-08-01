@@ -1,10 +1,13 @@
 package com.github.marivaldosena.diotodolist.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.github.marivaldosena.diotodolist.databinding.ActivityAddTodoBinding
+import com.github.marivaldosena.diotodolist.datasource.TaskDataSource
 import com.github.marivaldosena.diotodolist.extensions.format
 import com.github.marivaldosena.diotodolist.extensions.text
+import com.github.marivaldosena.diotodolist.model.Todo
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
@@ -25,8 +28,31 @@ class AddTodoActivity : AppCompatActivity() {
 
     private fun insertListeners() {
         insertListenerToDateInput()
-
         insertListenerToTimeInput()
+        insertListenerToCancelButton()
+        insertListenerToAddTodoButton()
+    }
+
+    private fun insertListenerToAddTodoButton() {
+        binding.buttonAddTodo.setOnClickListener {
+            with(binding) {
+                val todo = Todo(
+                    title = todoTitle.text,
+                    date = todoDate.text,
+                    hour = todoTime.text
+                )
+
+                TaskDataSource.insertTodo(todo)
+
+                Log.e(this::class.toString(), "Adding todo: ${todo.title}")
+            }
+        }
+    }
+
+    private fun insertListenerToCancelButton() {
+        binding.buttonCancel.setOnClickListener {
+            finish()
+        }
     }
 
     private fun insertListenerToTimeInput() {
@@ -37,7 +63,10 @@ class AddTodoActivity : AppCompatActivity() {
 
             with(timePicker) {
                 addOnPositiveButtonClickListener {
-                    binding.todoTime.text = "$hour $minute"
+                    val formattedMinute = if (minute in 0..9) "0$minute" else "$minute"
+                    val formattedHour = if (hour in 0..9) "0$hour" else "$hour"
+
+                    binding.todoTime.text = "$formattedHour:$formattedMinute"
                 }
 
                 show(supportFragmentManager, "TIME_PICKER_TAG")
