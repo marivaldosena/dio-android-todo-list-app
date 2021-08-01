@@ -6,6 +6,8 @@ import com.github.marivaldosena.diotodolist.databinding.ActivityAddTodoBinding
 import com.github.marivaldosena.diotodolist.extensions.format
 import com.github.marivaldosena.diotodolist.extensions.text
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import java.util.*
 
 class AddTodoActivity : AppCompatActivity() {
@@ -21,6 +23,28 @@ class AddTodoActivity : AppCompatActivity() {
     }
 
     private fun insertListeners() {
+        insertListenerToDateInput()
+
+        insertListenerToTimeInput()
+    }
+
+    private fun insertListenerToTimeInput() {
+        binding.todoTime.editText?.setOnClickListener {
+            val timePicker = MaterialTimePicker.Builder()
+                .setTimeFormat(TimeFormat.CLOCK_24H)
+                .build()
+
+            with(timePicker) {
+                addOnPositiveButtonClickListener {
+                    binding.todoTime.text = "$hour $minute"
+                }
+
+                show(supportFragmentManager, "TIME_PICKER_TAG")
+            }
+        }
+    }
+
+    private fun insertListenerToDateInput() {
         binding.todoDate.editText?.setOnClickListener {
             val datePicker = MaterialDatePicker.Builder.datePicker().build()
 
