@@ -1,8 +1,10 @@
 package com.github.marivaldosena.diotodolist
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.github.marivaldosena.diotodolist.databinding.ActivityMainBinding
+import com.github.marivaldosena.diotodolist.ui.AddTodoActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,5 +15,13 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        insertListeners()
+    }
+
+    private fun insertListeners() {
+        binding.fab.setOnClickListener {
+            startActivity(Intent(this, AddTodoActivity::class.java))
+        }
     }
 }
